@@ -1,0 +1,4 @@
+/bin/*
+/.docker/*
+docker-compose*
+README.md

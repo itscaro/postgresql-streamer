@@ -1,0 +1,31 @@
+version: '3.6'
+
+services:
+  app:
+    build:
+      dockerfile: Dockerfile
+      context: .
+      args:
+        OS: Linux
+        GIT_COMMIT: unknown-commit
+        VERSION: dev
+    hostname: app
+    entrypoint:
+      - tail
+      - -f
+      - /dev/null
+
+  postgres:
+    build:
+      dockerfile: Dockerfile
+      context: .docker/postgresql/
+    hostname: postgres
+
+  rabbitmq:
+    image: rabbitmq:3.7-management
+    hostname: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: user
+      RABBITMQ_DEFAULT_PASS: password
+      RABBITMQ_PID_FILE: /var/lib/rabbitmq/pid
+      RABBITMQ_ERLANG_COOKIE: "cluster-cookie"
