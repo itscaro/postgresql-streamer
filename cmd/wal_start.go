@@ -152,7 +152,6 @@ func process(stdoutPipe io.ReadCloser, amqpConnection *amqp.Connection, wg sync.
 }
 
 func publish(amqpConnection *amqp.Connection, change *postgresql.Wal2JsonChange) {
-	publicationAttempt := 0
 	if atomicChange, err := json.Marshal(change); err != nil {
 		errorLogger.WithFields(log.Fields{
 			"error":  err,
