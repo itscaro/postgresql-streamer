@@ -16,15 +16,15 @@ jobs:
           files: bin/postgresql-streamer*
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  cloudbuild:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - name: GCP Cloud Build
-        uses: docker://docker.io/itscaro/github-actions-gcloud # prebuilt image of https://github.com/actions/gcloud/tree/master/cli
-        with:
-          entrypoint: .github/cloudbuild.sh
-        env:
-          GCLOUD_AUTH: ${{ secrets.GCLOUD_AUTH }}
-          GCLOUD_PROJECT: ${{ secrets.GCLOUD_PROJECT }}
-          TAG_NAME: ${{ github.ref }}
+#  cloudbuild:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@master
+#      - name: GCP Cloud Build
+#        uses: docker://docker.io/itscaro/github-actions-gcloud # prebuilt image of https://github.com/actions/gcloud/tree/master/cli
+#        with:
+#          entrypoint: .github/cloudbuild.sh
+#        env:
+#          GCLOUD_AUTH: ${{ secrets.GCLOUD_AUTH }}
+#          GCLOUD_PROJECT: ${{ secrets.GCLOUD_PROJECT }}
+#          TAG_NAME: ${{ github.ref }}
