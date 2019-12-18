@@ -50,7 +50,7 @@ build:
 extract-from-image:
 	mkdir bin
 	docker container create --name $(PROJECT)-prebuilt $(PROJECT)-local
-	docker container cp prebuilt:/app/. bin/
+	docker container cp $(PROJECT)-prebuilt:/app/. bin/
 	-docker container rm -f $(PROJECT)-prebuilt
 
 cmd-start:
